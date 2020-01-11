@@ -1,12 +1,14 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import hisoty from './services/history';
+import history from './services/history';
+
+import './config/ReactotronConfig'
 
 import Routes from './routes';
 
 function App() {
   return (
-    <Router history={hisoty}>
+    <Router history={history}>
       <Routes />
     </Router>
   )
