@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // import { Container } from './styles';
 
 export default function Dashboard() {
   return (
-    <h1>Dashboard</h1>
+    <div>
+      <h1>Dashboard</h1>
+      <Link to="/profile">Profile</Link>
+    </div>
   );
 }
