@@ -1,0 +1,57 @@
+version: "3"
+
+services: 
+    client:
+        build: ./gobarber-react
+        command: npm start
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - ./gobarber-react:/usr/src/gobarber-react
+            - /usr/src/gobarber-react/node_modules
+        environment:
+            REACT_APP_API_HOST: server
+        depends_on: 
+            - server
+        links: 
+            - server
+    server:
+        build: ./gobarber_api
+        command: npm start
+        restart: on-failure:10
+        ports: 
+            - "3333:3333"
+        volumes: 
+            - ./gobarber_api:/usr/src/gobarber_api
+            - /usr/src/gobarber_api/node_modules
+        environment:
+            DB_HOST: postgres
+            DB_USER: postgres
+            DB_PASSWORD: mysecretpassword
+            DB_NAME: gobarber
+        depends_on: 
+            - mongo
+            - redis
+            - postgres
+    redis:
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+    mongo:
+        image: mongo:latest
+        restart: always
+        ports: 
+            - "27018:27017"
+        volumes: 
+            - ./mongo_data:/data/db
+    postgres:
+        image: postgres:11
+        ports: 
+            - "5433:5432"
+        environment:
+            POSTGRES_PASSWORD: mysecretpassword
+            POSTGRES_USER: postgres
+        volumes: 
+            - ./postgres_data:/var/lib/postgresql/data
+
+        
