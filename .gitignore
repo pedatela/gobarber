@@ -3,3 +3,5 @@
 /mongo_data
 /gobarber-react/node_modules
 /gobarber_api/node_modules
+/gobarber_api/.env
+/gobarber-react/.env

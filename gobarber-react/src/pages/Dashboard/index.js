@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { format, subDays, addDays, setHours, setMinutes, setSeconds, isBefore, isEqual, parseISO } from 'date-fns'
+import { format, subDays, addDays, setHours, setMinutes, setSeconds, isBefore, parseISO } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
 import pt from 'date-fns/locale/pt'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
@@ -34,7 +34,7 @@ export default function Dashboard() {
           time: `${hour}: 00h`,
           past: isBefore(compareDate, new Date()),
           appointment: response.data.find(a =>
-            (`${parseISO(a.date)}` == `${compareDate}`)
+            (`${parseISO(a.date)}` === `${compareDate}`)
           )
         }
       })
