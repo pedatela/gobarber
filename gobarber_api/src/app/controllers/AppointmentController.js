@@ -38,13 +38,13 @@ class AppointmentController {
   async store(req, res) {
     const { provider_id, date } = req.body
 
-    const appointment = await CreateAppointmentService({
+    const appointment = await CreateAppointmentService.run({
       provider_id,
       user_id: req.userId,
       date
     })
 
-    return res.json(appoitment)
+    return res.json(appointment)
   }
 
   async delete(req, res) {
@@ -52,7 +52,7 @@ class AppointmentController {
       provider_id: req.params.id,
       user_id: req.userId
     })
-    return res.json(appoitment)
+    return res.json(appointment)
   }
 }
 

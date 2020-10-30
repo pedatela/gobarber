@@ -41,7 +41,7 @@ class CreateAppointmentService {
             date: hourStart
         })
 
-        const user = await User.findByPk(req.userId)
+        const user = await User.findByPk(user_id)
         const formattedDate = format(hourStart, "'dia' dd 'de' MMMM', às' H:mm'h' ", { locale: pt })
 
         await Notifification.create({

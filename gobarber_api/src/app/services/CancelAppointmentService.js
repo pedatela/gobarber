@@ -38,6 +38,7 @@ class CancelAppointmentService {
 
         appoitment.canceled_at = new Date()
         await appoitment.save()
+        console.log({ appoitment })
         Queue.add(CancellationMail.key, { appoitment })
         return appoitment
     }
