@@ -4,7 +4,7 @@ import { Op } from 'sequelize'
 import Appointment from '../models/Appointment'
 class AvailableService {
     async run({ provider_id, date }) {
-        const appointments = await Appointment.finddAll({
+        const appointments = await Appointment.findAll({
             where: {
                 provider_id,
                 canceled_at: null,
